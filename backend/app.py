@@ -8,9 +8,18 @@ from utils.password_generator import generate_password
 
 app = Flask(__name__)
 
-CORS(app, origins=[
-    "https://bharath-portfolio-psi.vercel.app/"
-])
+CORS(
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "http://localhost:5173",
+                "https://bharath-portfolio-psi.vercel.app"
+            ]
+        }
+    },
+    supports_credentials=True
+)
 
 
 # =============================
