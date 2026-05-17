@@ -145,13 +145,28 @@ function Contact() {
     }
   };
 
+  // Loading state
+
   if (!data) {
 
     return (
 
-      <div style={styles.loadingContainer}>
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#0b1120",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
 
-        <h1 style={styles.loadingText}>
+        <h1
+          style={{
+            color: "white",
+            fontFamily: "sans-serif",
+          }}
+        >
           Loading...
         </h1>
 
@@ -477,26 +492,6 @@ function Contact() {
       marginTop: "5px",
 
       width: "100%",
-    },
-
-    loadingContainer: {
-
-      minHeight: "100vh",
-
-      background: "#0b1120",
-
-      display: "flex",
-
-      justifyContent: "center",
-
-      alignItems: "center",
-    },
-
-    loadingText: {
-
-      color: "white",
-
-      fontFamily: "sans-serif",
     },
   };
 
