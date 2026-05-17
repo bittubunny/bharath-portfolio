@@ -217,6 +217,8 @@
 
   .hero {
 
+    flex-direction: column-reverse;
+
     padding: 40px 20px;
 
     gap: 40px;
