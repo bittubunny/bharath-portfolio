@@ -2,8 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 
 function PortfolioAI() {
+
   const [input, setInput] = useState("");
-  const [isMinimized, setIsMinimized] = useState(false); // State to handle toggle
+
+  // chatbot closed by default
+  const [isOpen, setIsOpen] = useState(false);
+
   const [messages, setMessages] = useState([
     {
       sender: "ai",
@@ -12,6 +16,7 @@ function PortfolioAI() {
   ]);
 
   const sendMessage = async () => {
+
     if (!input.trim()) return;
 
     const userMessage = {
@@ -19,11 +24,17 @@ function PortfolioAI() {
       text: input,
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [
+      ...prev,
+      userMessage,
+    ]);
 
     try {
+
       const response = await axios.post(
-        "http://127.0.0.1:5000/portfolio-ai",
+
+        "https://bharath-portfolio-7gje.onrender.com/portfolio-ai",
+
         {
           message: input,
         }
@@ -34,16 +45,24 @@ function PortfolioAI() {
         text: response.data.reply,
       };
 
-      setMessages((prev) => [...prev, aiMessage]);
+      setMessages((prev) => [
+        ...prev,
+        aiMessage,
+      ]);
+
     } catch (error) {
+
       console.log(error);
 
       setMessages((prev) => [
+
         ...prev,
+
         {
           sender: "ai",
           text: "Server error.",
         },
+
       ]);
     }
 
@@ -51,23 +70,74 @@ function PortfolioAI() {
   };
 
   return (
-    <div style={styles.container}>
-      {/* Clickable Header to toggle minimize/maximize */}
-      <h1 
-        style={styles.title} 
-        onClick={() => setIsMinimized(!isMinimized)}
-      >
-        AI Portfolio Assistant
-        <span style={styles.toggleIcon}>
-          {isMinimized ? "▲" : "▼"}
-        </span>
-      </h1>
 
-      {/* Conditional rendering based on minimize state */}
-      {!isMinimized && (
-        <>
+    <>
+      {/* BOT CIRCLE */}
+
+      {!isOpen && (
+
+        <div
+          style={styles.botCircle}
+          onClick={() => setIsOpen(true)}
+        >
+
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"
+            alt="AI Bot"
+            style={styles.botImage}
+          />
+
+        </div>
+
+      )}
+
+      {/* CHAT WINDOW */}
+
+      {isOpen && (
+
+        <div style={styles.container}>
+
+          {/* HEADER */}
+
+          <div style={styles.header}>
+
+            <div style={styles.headerLeft}>
+
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png"
+                alt="Bot"
+                style={styles.headerBot}
+              />
+
+              <div>
+
+                <h3 style={styles.headerTitle}>
+                  AI Assistant
+                </h3>
+
+                <p style={styles.headerSubtitle}>
+                  Online
+                </p>
+
+              </div>
+
+            </div>
+
+            <button
+              style={styles.closeButton}
+              onClick={() => setIsOpen(false)}
+            >
+              ✕
+            </button>
+
+          </div>
+
+          {/* CHAT AREA */}
+
           <div style={styles.chatBox}>
+
             {messages.map((msg, index) => (
+
               <div
                 key={index}
                 style={
@@ -78,110 +148,310 @@ function PortfolioAI() {
               >
                 {msg.text}
               </div>
+
             ))}
+
           </div>
 
+          {/* INPUT */}
+
           <div style={styles.inputArea}>
+
             <input
               type="text"
               placeholder="Ask something..."
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) =>
+                setInput(e.target.value)
+              }
               style={styles.input}
               onKeyDown={(e) => {
+
                 if (e.key === "Enter") {
+
                   sendMessage();
                 }
               }}
             />
-            <button onClick={sendMessage} style={styles.button}>
+
+            <button
+              onClick={sendMessage}
+              style={styles.button}
+            >
               Send
             </button>
+
           </div>
-        </>
+
+        </div>
+
       )}
-    </div>
+    </>
   );
 }
 
 const styles = {
-  container: {
+
+  /* FLOATING BOT */
+
+  botCircle: {
+
     position: "fixed",
+
     bottom: "20px",
+
     right: "20px",
-    width: "350px",
-    background: "#111827",
-    borderRadius: "20px",
-    overflow: "hidden",
-    boxShadow: "0 0 20px rgba(0,0,0,0.4)",
-    display: "flex",
-    flexDirection: "column",
-    zIndex: 9999,
-  },
-  title: {
+
+    width: "70px",
+
+    height: "70px",
+
+    borderRadius: "50%",
+
     background: "#00d4ff",
-    color: "black",
-    textAlign: "center",
-    padding: "15px",
-    margin: 0,
-    fontSize: "18px",
-    cursor: "pointer", // Makes it obvious it's clickable
+
     display: "flex",
-    justifyContent: "space-between",
+
+    justifyContent: "center",
+
     alignItems: "center",
-    paddingLeft: "20px",
-    paddingRight: "20px",
-    userSelect: "none", // Prevents accidental text selection on double click
+
+    cursor: "pointer",
+
+    boxShadow:
+      "0 0 25px rgba(0,212,255,0.5)",
+
+    zIndex: 9999,
+
+    animation: "floatBot 2s infinite ease-in-out",
   },
-  toggleIcon: {
-    fontSize: "14px",
+
+  botImage: {
+
+    width: "42px",
+
+    height: "42px",
+
+    objectFit: "contain",
+  },
+
+  /* CHAT CONTAINER */
+
+  container: {
+
+    position: "fixed",
+
+    bottom: "20px",
+
+    right: "20px",
+
+    width:
+      window.innerWidth <= 768
+        ? "calc(100% - 24px)"
+        : "360px",
+
+    maxWidth: "360px",
+
+    height:
+      window.innerWidth <= 768
+        ? "80vh"
+        : "550px",
+
+    background: "#111827",
+
+    borderRadius: "24px",
+
+    overflow: "hidden",
+
+    boxShadow:
+      "0 0 30px rgba(0,0,0,0.5)",
+
+    display: "flex",
+
+    flexDirection: "column",
+
+    zIndex: 9999,
+
+    border:
+      "1px solid rgba(255,255,255,0.08)",
+  },
+
+  /* HEADER */
+
+  header: {
+
+    background: "#00d4ff",
+
+    color: "black",
+
+    padding: "14px 16px",
+
+    display: "flex",
+
+    justifyContent: "space-between",
+
+    alignItems: "center",
+  },
+
+  headerLeft: {
+
+    display: "flex",
+
+    alignItems: "center",
+
+    gap: "12px",
+  },
+
+  headerBot: {
+
+    width: "42px",
+
+    height: "42px",
+
+    borderRadius: "50%",
+
+    background: "white",
+
+    padding: "4px",
+  },
+
+  headerTitle: {
+
+    margin: 0,
+
+    fontSize: "16px",
+
     fontWeight: "bold",
   },
+
+  headerSubtitle: {
+
+    margin: 0,
+
+    fontSize: "12px",
+  },
+
+  closeButton: {
+
+    background: "transparent",
+
+    border: "none",
+
+    fontSize: "22px",
+
+    cursor: "pointer",
+
+    color: "black",
+
+    fontWeight: "bold",
+  },
+
+  /* CHAT */
+
   chatBox: {
-    height: "400px",
+
+    flex: 1,
+
     overflowY: "auto",
+
     padding: "15px",
+
     display: "flex",
+
     flexDirection: "column",
-    gap: "10px",
+
+    gap: "12px",
+
     background: "#0b1120",
   },
+
   userMessage: {
+
     alignSelf: "flex-end",
+
     background: "#00d4ff",
+
     color: "black",
-    padding: "10px 14px",
-    borderRadius: "15px",
+
+    padding: "12px 15px",
+
+    borderRadius: "16px 16px 4px 16px",
+
     maxWidth: "80%",
+
+    lineHeight: "1.5",
+
+    fontSize: "14px",
   },
+
   aiMessage: {
+
     alignSelf: "flex-start",
+
     background: "#1e293b",
+
     color: "white",
-    padding: "10px 14px",
-    borderRadius: "15px",
+
+    padding: "12px 15px",
+
+    borderRadius: "16px 16px 16px 4px",
+
     maxWidth: "80%",
+
+    lineHeight: "1.5",
+
+    fontSize: "14px",
   },
+
+  /* INPUT */
+
   inputArea: {
+
     display: "flex",
-    padding: "10px",
-    gap: "10px",
-    background: "#111827",
-  },
-  input: {
-    flex: 1,
+
     padding: "12px",
-    borderRadius: "10px",
-    border: "none",
-    outline: "none",
+
+    gap: "10px",
+
+    background: "#111827",
+
+    borderTop:
+      "1px solid rgba(255,255,255,0.06)",
   },
+
+  input: {
+
+    flex: 1,
+
+    padding: "12px",
+
+    borderRadius: "12px",
+
+    border: "1px solid #1e293b",
+
+    outline: "none",
+
+    background: "#0b1120",
+
+    color: "white",
+
+    fontSize: "14px",
+  },
+
   button: {
+
     padding: "12px 16px",
-    borderRadius: "10px",
+
+    borderRadius: "12px",
+
     border: "none",
+
     background: "#00d4ff",
+
     color: "black",
+
     fontWeight: "bold",
+
     cursor: "pointer",
   },
 };
