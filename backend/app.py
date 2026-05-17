@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 
 from flask_cors import CORS
 
-from backend.services.supabase_client import supabase
+from services.supabase_client import supabase
 
 from utils.password_generator import generate_password
 
