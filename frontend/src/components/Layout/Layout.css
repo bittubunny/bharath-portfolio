@@ -1,0 +1,22 @@
+.layout {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.main-content {
+
+  flex: 1;
+
+  width: 100%;
+}
+
+/* Prevent horizontal scrolling on mobile */
+
+body {
+
+  overflow-x: hidden;
+}
