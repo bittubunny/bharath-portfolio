@@ -11,7 +11,7 @@ function About() {
 
     fetchAbout();
 
-    // Inject animations
+    // Inject animations only once
     if (!document.getElementById("about-page-animations")) {
 
       const styleSheet = document.createElement("style");
@@ -89,9 +89,23 @@ function About() {
     }
   };
 
+  // Loading state
   if (!data) {
 
-    return <h1 style={styles.loading}>Loading...</h1>;
+    return (
+
+      <h1
+        style={{
+          color: "white",
+          textAlign: "center",
+          marginTop: "20vh",
+          fontFamily: "sans-serif",
+        }}
+      >
+        Loading...
+      </h1>
+
+    );
   }
 
   const styles = {
@@ -358,17 +372,6 @@ function About() {
 
       cursor: "pointer",
     },
-
-    loading: {
-
-      color: "white",
-
-      textAlign: "center",
-
-      marginTop: "20vh",
-
-      fontFamily: "sans-serif",
-    },
   };
 
   return (
@@ -377,11 +380,14 @@ function About() {
 
       <div style={styles.contentWrapper}>
 
-        {/* LEFT */}
+        {/* LEFT SIDE */}
 
         <div style={styles.leftColumn}>
 
-          <div className="animate-float" style={styles.imageContainerFrame}>
+          <div
+            className="animate-float"
+            style={styles.imageContainerFrame}
+          >
 
             <div style={styles.gradientBorderBg}></div>
 
@@ -395,7 +401,7 @@ function About() {
 
         </div>
 
-        {/* RIGHT */}
+        {/* RIGHT SIDE */}
 
         <div style={styles.rightColumn}>
 
@@ -419,7 +425,10 @@ function About() {
 
           <div style={styles.statsContainer}>
 
-            <div className="hover-card-effect" style={styles.statCard}>
+            <div
+              className="hover-card-effect"
+              style={styles.statCard}
+            >
 
               <h2 style={styles.statNumber}>
                 {data.years_experience}
@@ -431,7 +440,10 @@ function About() {
 
             </div>
 
-            <div className="hover-card-effect" style={styles.statCard}>
+            <div
+              className="hover-card-effect"
+              style={styles.statCard}
+            >
 
               <h2 style={styles.statNumber}>
                 {data.projects_completed}
