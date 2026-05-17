@@ -9,7 +9,7 @@ from utils.password_generator import generate_password
 app = Flask(__name__)
 
 CORS(app, origins=[
-    "https://updatedportgolio.vercel.app/"
+    "https://bharath-portfolio-delta.vercel.app/"
 ])
 
 
