@@ -1,0 +1,162 @@
+.hero {
+  min-height: 90vh;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 60px;
+
+  gap: 50px;
+}
+
+.hero-left {
+  flex: 1;
+}
+
+.hero-subtitle {
+  color: var(--primary-color);
+
+  margin-bottom: 20px;
+
+  font-size: 18px;
+}
+
+.hero-left h1 {
+  font-size: 70px;
+
+  margin-bottom: 20px;
+}
+
+.hero-left h1 span {
+  color: var(--primary-color);
+}
+
+.hero-left h2 {
+  font-size: 32px;
+
+  color: var(--text-secondary);
+
+  margin-bottom: 25px;
+}
+
+.hero-description {
+  max-width: 600px;
+
+  line-height: 1.8;
+
+  color: var(--text-secondary);
+
+  margin-bottom: 40px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-buttons button {
+  padding: 14px 30px;
+
+  border-radius: 10px;
+
+  background-color: var(--primary-color);
+
+  color: black;
+
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.hero-buttons button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.secondary-btn {
+  background-color: transparent !important;
+
+  border: 1px solid white;
+  color: white !important;
+}
+
+.hero-right {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+}
+
+.hero-card {
+  width: 350px;
+
+  padding: 40px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-card h3 {
+  margin-bottom: 20px;
+
+  color: var(--primary-color);
+}
+
+.hero-card ul {
+  list-style: none;
+}
+
+.hero-card li {
+  margin-bottom: 15px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+
+  .hero {
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-left h1 {
+    font-size: 50px;
+  }
+
+}
+
+.hero-image {
+
+  width: 350px;
+
+  height: 350px;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+
+  border: 2px solid rgba(255,255,255,0.1);
+
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+
+  transition: 0.3s;
+}
+
+.hero-image:hover {
+
+  transform: translateY(-5px);
+
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+}

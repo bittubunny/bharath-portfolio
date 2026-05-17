@@ -1,0 +1,18 @@
+.cursor-glow {
+  width: 250px;
+  height: 250px;
+
+  background: rgba(0, 212, 255, 0.15);
+
+  position: fixed;
+
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+
+  filter: blur(80px);
+
+  z-index: -1;
+}

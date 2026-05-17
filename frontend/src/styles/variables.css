@@ -1,0 +1,16 @@
+:root {
+  --primary-color: #00d4ff;
+  --secondary-color: #7c4dff;
+
+  --background-dark: #0b1120;
+  --background-light: #111827;
+
+  --text-primary: #ffffff;
+  --text-secondary: #b0b7c3;
+
+  --card-bg: rgba(255, 255, 255, 0.05);
+
+  --border-radius: 16px;
+
+  --transition-speed: 0.3s;
+}
