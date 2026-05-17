@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://bharathportfolio-yn9j.onrender.com";
+const BASE_URL = "https://bharath-portfolio-7gje.onrender.com";
 
 
 // =============================
