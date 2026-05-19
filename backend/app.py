@@ -303,12 +303,14 @@ def portfolio_ai():
     about = supabase.table("about").select("*").limit(1).execute().data
     resume = supabase.table("resume").select("*").limit(1).execute().data
     contact = supabase.table("contact").select("*").limit(1).execute().data
+    blogs = supabase.table("blog").select("*").order("id", desc=True).execute().data
 
     # Format database items as JSON strings to feed securely into system instructions
     context_about = json.dumps(about[0] if about else {}, indent=2)
     context_projects = json.dumps(projects if projects else [], indent=2)
     context_resume = json.dumps(resume[0] if resume else {}, indent=2)
     context_contact = json.dumps(contact[0] if contact else {}, indent=2)
+    context_blogs = json.dumps(blogs if blogs else [], indent=2)
 
     # Dynamic System Instructions including your live database records
     SYSTEM_INSTRUCTION = f"""
@@ -329,14 +331,18 @@ def portfolio_ai():
     [CONTACT & SOCIAL LINKS]:
     {context_contact}
     
+    [BLOG POSTS]:
+    {context_blogs}
+    
     ---------------------------------------
 
     Behavior Constraints:
     1. Respond naturally in the third person or as Bharath's professional AI proxy representing his interests.
     2. Keep descriptions clear and easy to swallow in a fast-scrolling mobile chat panel (use small formatting adjustments or short line-breaks).
     3. Use technical project details (like tools, problems, features, live_url, github_url) dynamically when someone requests details about his builds.
-    4. Mention his "Bharath Vlogs & Tech" YouTube channel naturally when users ask for video content or more about his hobbies.
-    5. If a metric or detailed question falls beyond this context data, politely guide them to check his profiles using his contact records.
+    4. Share context on his written articles, technical blogs, or travel write-ups using the blog records when users ask about his insights or recent posts.
+    5. Mention his "Bharath Vlogs & Tech" YouTube channel naturally when users ask for video content or more about his hobbies.
+    6. If a metric or detailed question falls beyond this context data, politely guide them to check his profiles using his contact records.
     """
 
     try:
