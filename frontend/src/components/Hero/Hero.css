@@ -66,7 +66,9 @@
   color: white !important;
 }
 
-/* RIGHT SIDE */
+/* =========================
+   RIGHT SIDE
+========================= */
 
 .hero-right {
   flex: 1;
@@ -75,28 +77,40 @@
   align-items: center;
 }
 
-/* IMAGE WRAPPER */
+/* =========================
+   IMAGE WRAPPER
+========================= */
 
 .image-wrapper {
-  width: 350px;
-  height: 350px;
+  width: 420px;
+  height: 520px;
 
   overflow: hidden;
 
-  border-radius: 20px;
+  border-radius: 24px;
 
-  border: 2px solid rgba(255,255,255,0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
 
-  transition: 0.3s;
+  box-shadow:
+    0 0 30px rgba(0, 212, 255, 0.2),
+    0 0 60px rgba(0, 212, 255, 0.1);
+
+  transition: all 0.3s ease;
 }
 
 .image-wrapper:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
 
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+  box-shadow:
+    0 0 40px rgba(0, 212, 255, 0.35),
+    0 0 80px rgba(0, 212, 255, 0.15);
 }
+
+/* =========================
+   IMAGE
+========================= */
 
 .hero-image {
   display: block;
@@ -107,15 +121,20 @@
   object-fit: cover;
 }
 
-/* FALLBACK CARD */
+/* =========================
+   FALLBACK CARD
+========================= */
 
 .hero-card {
   width: 350px;
   padding: 40px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.05);
+
+  background: rgba(255, 255, 255, 0.05);
+
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-card h3 {
@@ -158,12 +177,12 @@
   }
 
   .hero-description {
-    margin: 0 auto 35px;
+    margin: 0 auto 35px auto;
   }
 
   .image-wrapper {
-    width: 300px;
-    height: 300px;
+    width: 340px;
+    height: 430px;
   }
 }
 
@@ -215,9 +234,9 @@
   }
 
   .image-wrapper {
-    width: 240px;
-    height: 240px;
-    border-radius: 16px;
+    width: 260px;
+    height: 330px;
+    border-radius: 18px;
   }
 
   .hero-card {
