@@ -141,67 +141,69 @@ function About() {
       alignItems: "flex-start",
     },
 
-    imageContainerFrame: {
+imageContainerFrame: {
 
-      position: "sticky",
+  position: "relative",
 
-      top: "100px",
+  width: isMobile ? "260px" : "420px",
 
-      width: isMobile ? "250px" : "360px",
+  height: isMobile ? "260px" : "420px",
 
-      height: isMobile ? "250px" : "360px",
+  borderRadius: "24px",
 
-      borderRadius: "24px",
+  display: "flex",
 
-      display: "flex",
+  justifyContent: "center",
 
-      justifyContent: "center",
+  alignItems: "center",
+},
 
-      alignItems: "center",
-    },
+gradientBorderBg: {
 
-    gradientBorderBg: {
+  position: "absolute",
 
-      position: "absolute",
+  top: "-3px",
 
-      top: "-3px",
+  left: "-3px",
 
-      left: "-3px",
+  right: "-3px",
 
-      right: "-3px",
+  bottom: "-3px",
 
-      bottom: "-3px",
+  background:
+    "linear-gradient(45deg, #00d4ff, #1e293b, #00d4ff)",
 
-      background:
-        "linear-gradient(45deg, #00d4ff, #1e293b, #00d4ff)",
+  borderRadius: "27px",
 
-      borderRadius: "27px",
+  zIndex: 1,
 
-      zIndex: 1,
+  opacity: 0.8,
 
-      opacity: 0.8,
+  boxShadow: "0 0 30px rgba(0, 212, 255, 0.3)",
+},
 
-      boxShadow: "0 0 25px rgba(0, 212, 255, 0.25)",
-    },
+image: {
 
-    image: {
+  width: "100%",
 
-      width: "100%",
+  height: "100%",
 
-      height: "100%",
+  objectFit: "cover",
 
-      objectFit: "cover",
+  /* Move crop slightly upward */
+  objectPosition: "center 20%",
 
-      borderRadius: "24px",
+  borderRadius: "24px",
 
-      display: "block",
+  display: "block",
 
-      zIndex: 2,
+  zIndex: 2,
 
-      position: "relative",
+  position: "relative",
 
-      border: "3px solid #0b1120",
-    },
+  border: "3px solid #0b1120",
+},
+    
 
     rightColumn: {
 
