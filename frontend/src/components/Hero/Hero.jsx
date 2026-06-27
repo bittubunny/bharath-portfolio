@@ -45,7 +45,6 @@ function Hero() {
     <section className="hero">
 
       {/* LEFT SIDE */}
-
       <div className="hero-left">
 
         <p className="hero-subtitle">
@@ -59,13 +58,11 @@ function Hero() {
           </span>
         </h1>
 
-          <h2>
-
-        <TypingText
-          texts={data.typing_titles}
-        />
-
-    </h2>
+        <h2>
+          <TypingText
+            texts={data.typing_titles}
+          />
+        </h2>
 
         <p className="hero-description">
           {data.description}
@@ -74,19 +71,15 @@ function Hero() {
         <div className="hero-buttons">
 
           <a href={data.primary_button_link}>
-
             <button>
               {data.primary_button_text}
             </button>
-
           </a>
 
           <a href={data.secondary_button_link}>
-
             <button className="secondary-btn">
               {data.secondary_button_text}
             </button>
-
           </a>
 
         </div>
@@ -94,46 +87,44 @@ function Hero() {
       </div>
 
       {/* RIGHT SIDE */}
+      <div className="hero-right">
 
-      {/* RIGHT SIDE */}
+        {data.hero_image ? (
 
-<div className="hero-right">
+          <div className="image-wrapper">
 
-  {
+            <img
+              src={data.hero_image}
+              alt="Hero"
+              className="hero-image"
+            />
 
-    data.hero_image ? (
+          </div>
 
-      <img
-        src={data.hero_image}
-        alt="Hero"
-        className="hero-image"
-      />
+        ) : (
 
-    ) : (
+          <div className="hero-card">
 
-      <div className="hero-card">
+            <h3>Tech Stack</h3>
 
-        <h3>Tech Stack</h3>
+            <ul>
 
-        <ul>
+              {data.typing_titles.map((title, index) => (
 
-          {data.typing_titles.map((title, index) => (
+                <li key={index}>
+                  {title}
+                </li>
 
-            <li key={index}>
-              {title}
-            </li>
+              ))}
 
-          ))}
+            </ul>
 
-        </ul>
+          </div>
+
+        )}
 
       </div>
 
-    )
-
-  }
-
-</div>
     </section>
 
   );
